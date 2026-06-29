@@ -45,7 +45,7 @@ class StudentService(
 
         if (student.email != request.email && studentRepository.existsByEmail(request.email)) {
             logger.warn("Email conflict on update: ${request.email}")
-            throw EmailAlreadyExistsException("El correo ${request.email} ya está registrado.")
+            throw EmailAlreadyExistsException("Este correo ${request.email} ya está registrado.")
         }
 
         student.name = request.name
@@ -62,6 +62,6 @@ class StudentService(
     private fun findStudentOrThrow(id: Long) =
         studentRepository.findById(id).orElseThrow {
             logger.warn("Student not found id=$id")
-            StudentNotFoundException("Estudiante con id $id no encontrado.")
+            StudentNotFoundException("Este Estudiante con id $id no encontrado.")
         }
 }
